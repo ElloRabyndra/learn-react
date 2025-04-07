@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0);
 
   function handlePlus() {
@@ -45,4 +45,3 @@ function App() {
   );
 }
 
-export default App;

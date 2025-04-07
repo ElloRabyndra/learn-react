@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Navbar() {
+export default function Navbar() {
   return (
     <nav className="font-medium text-2xl p-4">
       <ul className="flex justify-center items-center gap-10 *:after:content-[''] *:after:block *:after:border *:after:border-blue-300 *:after:scale-x-0 *:after:transition-all *:after:duration-300">
@@ -17,5 +17,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;
