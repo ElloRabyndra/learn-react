@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,8 +16,10 @@ function App() {
   }
 
   return (
-    <>
-      <h1 className="text-center font-bold m-8">Halo, Saya Ello Rabyndra 👋</h1>
+    <div className="min-h-10/12 flex flex-col items-center justify-center">
+      <h1 className="text-center text-6xl font-bold m-8">
+        My First React Project 👋
+      </h1>
       <div className="card flex justify-center gap-3">
         <button
           onClick={handleMinus}
@@ -40,7 +41,7 @@ function App() {
       >
         Reset
       </button>
-    </>
+    </div>
   );
 }
 
