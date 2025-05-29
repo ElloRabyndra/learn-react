@@ -8,7 +8,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <div className="h-screen">
       <Navbar />
-      <App />
+      <App /> 
     </div>
   </StrictMode>
 );
