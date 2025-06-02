@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FormInput from "./FormInput";
-import Preview from "./Preview";
+import FormInput from "./Components/FormInput";
+import Preview from "./Components/Preview";
 
 export default function App() {
   const [formData, setFormData] = useState({
