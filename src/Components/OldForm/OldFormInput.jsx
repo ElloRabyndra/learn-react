@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 // FormInput.jsx
-export default function FormInput({ formData, setFormData }) {
+export default function OldFormInput({ formData, setFormData }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FormInput from "./FormInput";
-import Preview from "./Preview";
+import FormInput from "./OldFormInput";
+import Preview from "./OldPreview";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,8 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 export default function OldForm() {
   const [formData, setFormData] = useState({
@@ -21,7 +19,7 @@ export default function OldForm() {
   });
 
   return (
-    <Card className="w-full max-w-sm" variant="">
+    <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle className={"text-center text-xl font-bold -mb-2"}>Lifting State Up</CardTitle>
       </CardHeader>

@@ -1,5 +1,5 @@
 // Preview.jsx
-export default function Preview({ formData }) {
+export default function OldPreview({ formData }) {
   return (
     <div className="p-4 space-y-2 border shadow-xs rounded-2xl">
       <h2 className="font-bold ">Preview:</h2>
