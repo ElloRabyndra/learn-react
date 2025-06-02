@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FormInput from "./Components/FormInput";
-import Preview from "./Components/Preview";
+import OldForm from "./Components/OldForm/OldForm";
+
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -9,10 +9,8 @@ export default function App() {
   });
 
   return (
-    <div className="max-w-md p-4 mx-auto mt-40">
-      <h1 className="mb-4 text-2xl font-bold text-center">Lifting State Up</h1>
-      <FormInput formData={formData} setFormData={setFormData} />
-      <Preview formData={formData} />
+    <div className="flex items-center justify-center min-h-screen text-white bg-zinc-900">
+      <OldForm />
     </div>
   );
 }
