@@ -1,7 +1,7 @@
-export default function Page({ count }) {
+export default function Page({ children }) {
   return (
-    <div className="w-full px-6 py-2 shadow-xs bg-accent text-accent-foreground rounded-2xl">
-      Content Page {count}
+    <div className="flex items-center justify-center w-full font-semibold shadow-xs h-60 bg-accent text-accent-foreground rounded-2xl">
+      {children}
     </div>
   );
 }

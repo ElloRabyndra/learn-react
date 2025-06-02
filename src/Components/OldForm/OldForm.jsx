@@ -19,7 +19,7 @@ export default function OldForm() {
   });
 
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full min-w-80 md:min-w-md">
       <CardHeader>
         <CardTitle className={"text-center text-xl font-bold -mb-2"}>Lifting State Up</CardTitle>
       </CardHeader>
