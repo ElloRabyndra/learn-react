@@ -1,5 +1,6 @@
 import { useState } from "react";
 import OldForm from "../Components/OldForm/OldForm";
+import Nav from "../Components/Navigation/Nav";
 
 export default function OldFormPage() {
   const [formData, setFormData] = useState({
@@ -8,8 +9,11 @@ export default function OldFormPage() {
   });
 
   return (
-    <section className="flex items-center justify-center min-h-screen p-8 font-[Poppins]">
-      <OldForm />
+    <section className="flex flex-col items-center justify-center min-h-screen font-[Poppins]">
+      <div className="p-8 space-y-5 min-w-sm">
+        <OldForm />
+        <Nav />
+      </div>
     </section>
   );
 }
