@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function OldForm() {
+export default function LiftingStateUp() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
