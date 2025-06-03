@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/learn-react" element={<Home />} />
         <Route path="/LiftingStateUp" element={<OldFormPage />} />
         <Route path="/Routing" element={<RoutingPage />}>
           <Route index element={<Page>No Content Open</Page>} />
