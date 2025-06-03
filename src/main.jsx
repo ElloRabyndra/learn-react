@@ -7,9 +7,9 @@ import OldFormPage from "./pages/OldFormPage.jsx";
 import RoutingPage from "./pages/RoutingPage";
 import AuthPage from "./pages/AuthPage";
 import FormHandling from "./pages/FormHandling";
-import Page from "./Components/Routing/Page";
-import Register from "./Components/Auth/Register";
-import Login from "./Components/Auth/Login";
+import Page from "./components/Routing/Page";
+import Register from "./components/Auth/Register";
+import Login from "./components/Auth/Login";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
