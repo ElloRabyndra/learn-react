@@ -30,6 +30,7 @@ export default function Nav() {
           <SelectItem value="/">Home</SelectItem>
           <SelectItem value="/liftingStateUp">Lifting State Up</SelectItem>
           <SelectItem value="/Routing">Routing</SelectItem>
+          <SelectItem value="/FormHandling">Form Handling</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

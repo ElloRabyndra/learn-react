@@ -5,7 +5,11 @@ import "./style.css";
 import Home from "./pages/Home";
 import OldFormPage from "./pages/OldFormPage.jsx";
 import RoutingPage from "./pages/RoutingPage";
+import AuthPage from "./pages/AuthPage";
+import FormHandling from "./pages/FormHandling";
 import Page from "./Components/Routing/Page";
+import Register from "./Components/Auth/Register";
+import Login from "./Components/Auth/Login";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,6 +22,11 @@ createRoot(document.getElementById("root")).render(
           <Route path="Page1" element={<Page>Content 1</Page>} />
           <Route path="Page2" element={<Page>Content 2</Page>} />
           <Route path="Page3" element={<Page>Content 3</Page>} />
+        </Route>
+        <Route path="/FormHandling" element={<FormHandling />} />
+        <Route element={<AuthPage />}>
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>

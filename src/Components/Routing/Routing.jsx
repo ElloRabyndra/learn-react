@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router";
 
-export default function Routing() {
+export default function Routing({ Count }) {
   return (
     <div className="p-5 border shadow-xs rounded-2xl min-h-60">
       <nav className="flex justify-center gap-4 mb-4">
