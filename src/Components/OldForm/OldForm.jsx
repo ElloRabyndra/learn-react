@@ -1,16 +1,12 @@
 import { useState } from "react";
 import FormInput from "./OldFormInput";
 import Preview from "./OldPreview";
-import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/Components/ui/card";
 
 export default function OldForm() {
   const [formData, setFormData] = useState({
