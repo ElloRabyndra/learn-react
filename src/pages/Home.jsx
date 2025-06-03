@@ -1,4 +1,4 @@
-import Nav from "../Components/Navigation/Nav";
+import Nav from "../components/Navigation/Nav";
 export default function Home() {
   return (
     <section className="flex items-center justify-center min-h-screen p-8 font-[Poppins]">
