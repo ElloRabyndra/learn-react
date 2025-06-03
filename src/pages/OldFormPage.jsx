@@ -1,6 +1,6 @@
 import { useState } from "react";
-import OldForm from "../Components/OldForm/OldForm";
-import Nav from "../Components/Navigation/Nav";
+import OldForm from "../components/OldForm/OldForm";
+import Nav from "../components/Navigation/Nav";
 
 export default function OldFormPage() {
   const [formData, setFormData] = useState({

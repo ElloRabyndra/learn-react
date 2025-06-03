@@ -1,5 +1,5 @@
-import Nav from "../Components/Navigation/Nav";
-import { Button } from "@/Components/ui/button";
+import Nav from "../components/Navigation/Nav";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 export default function FormHandling() {
   return (

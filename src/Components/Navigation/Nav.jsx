@@ -9,7 +9,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/Components/ui/select"
+} from "@/components/ui/select"
 
 
 export default function Nav() {
