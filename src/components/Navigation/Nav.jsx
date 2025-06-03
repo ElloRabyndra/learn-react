@@ -27,7 +27,7 @@ export default function Nav() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Pages</SelectLabel>
-          <SelectItem value="/learn-react">Home</SelectItem>
+          <SelectItem value="/">Home</SelectItem>
           <SelectItem value="/liftingStateUp">Lifting State Up</SelectItem>
           <SelectItem value="/Routing">Routing</SelectItem>
           <SelectItem value="/FormHandling">Form Handling</SelectItem>
