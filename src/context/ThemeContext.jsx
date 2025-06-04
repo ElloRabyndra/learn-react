@@ -4,11 +4,11 @@ import React, { createContext, useState} from "react";
 export const ThemeContext = createContext();
 
 // Membuat Provider
-export default function themeProvider({children}) {
+export default function ThemeProvider({children}) {
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === "light" ? "dark" : "");
+    setTheme(prevTheme => prevTheme === "light" ? "dark" : "light");
   };
 
   return (

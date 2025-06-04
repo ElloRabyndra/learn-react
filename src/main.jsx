@@ -18,17 +18,17 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/LiftingStateUp" element={<OldFormPage />} />
-          <Route path="/Routing" element={<RoutingPage />}>
+          <Route path="LiftingStateUp" element={<OldFormPage />} />
+          <Route path="Routing" element={<RoutingPage />}>
             <Route index element={<Page>No Content Open</Page>} />
             <Route path="Page1" element={<Page>Content 1</Page>} />
             <Route path="Page2" element={<Page>Content 2</Page>} />
             <Route path="Page3" element={<Page>Content 3</Page>} />
           </Route>
-          <Route path="/FormHandling" element={<FormHandling />} />
+          <Route path="FormHandling" element={<FormHandling />} />
           <Route element={<AuthPage />}>
-            <Route path="/Register" element={<Register />} />
-            <Route path="/Login" element={<Login />} />
+            <Route path="Register" element={<Register />} />
+            <Route path="Login" element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>

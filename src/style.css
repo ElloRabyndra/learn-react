@@ -3,7 +3,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+* {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
 :root {
+  transition: all 0.2s ease-in-out;
   --background: oklch(0.9818 0.0054 95.0986);
   --foreground: oklch(0.3438 0.0269 95.7226);
   --card: oklch(0.9818 0.0054 95.0986);
@@ -51,6 +56,8 @@
 }
 
 .dark {
+  background-color: oklch(21% 0.006 285.885);
+  color: oklch(96.7% 0.003 264.542);
   --background: oklch(0.2679 0.0036 106.6427);
   --foreground: oklch(0.8074 0.0142 93.0137);
   --card: oklch(0.2679 0.0036 106.6427);
