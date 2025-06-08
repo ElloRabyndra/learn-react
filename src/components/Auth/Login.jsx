@@ -19,13 +19,13 @@ export default function Login() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const emailInput = watch("email");
-  const passwordInput = watch("password");
 
   const onSubmit = (data) => {
     // Ambil data email dan password dari form
@@ -33,6 +33,9 @@ export default function Login() {
     
     // Cek apakah email dan password cocok
     const user = users.find((user) => user.email === email && user.password === password);
+
+    // Reset form
+    reset();
 
     // Alert sukses
     user && alert("Login successful!");

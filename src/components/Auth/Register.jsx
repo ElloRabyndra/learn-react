@@ -19,6 +19,7 @@ export default function Register() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -35,6 +36,9 @@ export default function Register() {
     // Simpan data ke localStorage
     const updatedUsers = [...users, userData];
     localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // Reset form
+    reset();
 
     // Alert sukses
     alert("Registration successful!");
