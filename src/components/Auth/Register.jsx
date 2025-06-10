@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,24 +17,52 @@ import { Label } from "@/components/ui/label";
 import ErrorMessage from "./ErrorMessage";
 
 export default function Register() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
-
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const allEmail = users.map((user) => user.email.toLowerCase());
-  const passwordInput = watch("password");
+
+  const registerSchema = z.object({
+    email: z
+      .string()
+      .min(1, "Email is required")
+      .min(5, "Email must be at least 5 characters")
+      .email("Email must be a valid email address")
+      .regex(
+        /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
+        "Email must be a valid Gmail address"
+      )
+      .transform((email) => email.toLowerCase())
+      .refine((email) => !allEmail.includes(email), {
+        message: "Email already exists",
+      }),
+    password: z
+      .string()
+      .min(1, "Password is required")
+      .min(5, "Password must be at least 5 characters"),
+    passwordConfirmation: z
+      .string()
+      .min(1, "Password confirmation is required")
+      .min(5, "Password confirmation must be at least 5 characters")
+  })
+  .refine(data => data.password === data.passwordConfirmation, {
+    message: "Passwords do not match",
+    path: ["passwordConfirmation"]
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+  });
 
   const onSubmit = (data) => {
     // Ambil data email dan password dari form
     const { email, password } = data;
     const userData = { email, password };
-    
+
     // Simpan data ke localStorage
     const updatedUsers = [...users, userData];
     localStorage.setItem("users", JSON.stringify(updatedUsers));
@@ -59,18 +89,7 @@ export default function Register() {
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
-                {...register("email", {
-                  required: "Email is required",
-                  minLength: {
-                    value: 5,
-                    message: "Email must be at least 5 characters",
-                  },
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
-                    message: "Email must be a valid Gmail address",
-                  },
-                  validate: value => !allEmail.includes(value.toLowerCase()) || "Email already exists",
-                })}
+                {...register("email")}
                 id="email"
                 type="email"
                 placeholder="Insert Email..."
@@ -86,13 +105,7 @@ export default function Register() {
                 <Label htmlFor="password">Password</Label>
               </div>
               <Input
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 5,
-                    message: "Password must be at least 5 characters",
-                  },
-                })}
+                {...register("password")}
                 id="password"
                 type="password"
                 placeholder="Insert Password..."
@@ -109,15 +122,7 @@ export default function Register() {
                 </Label>
               </div>
               <Input
-                {...register("passwordConfirmation", {
-                  required: "Password Confirmation is required",
-                  minLength: {
-                    value: 5,
-                    message:
-                      "Password Confirmation must be at least 5 characters",
-                  },
-                  validate: value => value.toLowerCase() === passwordInput.toLowerCase() || "Passwords do not match",
-                })}
+                {...register("passwordConfirmation")}
                 id="passwordConfirmation"
                 type="password"
                 placeholder="Insert Password Confirmation..."

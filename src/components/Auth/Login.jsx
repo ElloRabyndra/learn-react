@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -15,17 +15,43 @@ import { Label } from "@/components/ui/label";
 import ErrorMessage from "./ErrorMessage";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  
+  const loginSchema = z.object({
+    email: z
+      .string()
+      .min(1, "Email is required")
+      .min(5, "Email must be at least 5 characters")
+      .email("Email must be a valid email address")
+      .regex(/^[^\s@]+@gmail\.com$/, "Email must be a valid Gmail address")
+      .transform((email) => email.toLowerCase())
+      .refine(email => users.find(user => user.email.toLowerCase() === email), {
+        message: "Email not registered",
+      }),
+    password: z
+      .string()
+      .min(1, "Password is required")
+      .min(5, "Password must be at least 5 characters")
+  })
+  .refine(data => {
+    const user = users.find(user => user.email.toLowerCase() === data.email);
+    if (!user) return true; 
+    return data.password === user.password;
+  }, {
+      message: "Incorrect password",
+      path: ["password"],
+  })
+  
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
-  } = useForm();
-
-  const navigate = useNavigate();
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  const emailInput = watch("email");
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
+  
 
   const onSubmit = (data) => {
     // Ambil data email dan password dari form
@@ -50,7 +76,7 @@ export default function Login() {
         <CardTitle>Login to your account</CardTitle>
         <CardAction>
           <Button variant="link">
-            <Link to="/register">Register</Link>
+            <Link to="/Register">Register</Link>
           </Button>
         </CardAction>
       </CardHeader>
@@ -60,15 +86,7 @@ export default function Login() {
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
-                {...register("email", {
-                  required: "Email is required",
-                  minLength: 5,
-                  pattern: {
-                    value: /^[^\s@]+@gmail\.com$/,
-                    message: "Email must be a valid Gmail address",
-                  },
-                  validate: value => users.find(user => user.email === value) || 'Email not registered',
-                })}
+                {...register("email")}
                 id="email"
                 type="email"
                 placeholder="Insert Email..."
@@ -81,17 +99,7 @@ export default function Login() {
                 <Label htmlFor="password">Password</Label>
               </div>
               <Input
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 5,
-                    message: "Password must be at least 5 characters",
-                  },
-                  validate: value => {
-                    const user = users.find(user => user.email === emailInput) || {};
-                    return user.password === value || 'Password is incorrect';
-                  }
-                })}
+                {...register("password")}
                 id="password"
                 type="password"
                 placeholder="Insert Password..."
