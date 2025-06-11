@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "./Schema";
 import { Link, useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,31 +17,6 @@ import ErrorMessage from "./ErrorMessage";
 export default function Login() {
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  
-  const loginSchema = z.object({
-    email: z
-      .string()
-      .min(1, "Email is required")
-      .min(5, "Email must be at least 5 characters")
-      .email("Email must be a valid email address")
-      .regex(/^[^\s@]+@gmail\.com$/, "Email must be a valid Gmail address")
-      .transform((email) => email.toLowerCase())
-      .refine(email => users.find(user => user.email.toLowerCase() === email), {
-        message: "Email not registered",
-      }),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(5, "Password must be at least 5 characters")
-  })
-  .refine(data => {
-    const user = users.find(user => user.email.toLowerCase() === data.email);
-    if (!user) return true; 
-    return data.password === user.password;
-  }, {
-      message: "Incorrect password",
-      path: ["password"],
-  })
   
   const {
     register,
