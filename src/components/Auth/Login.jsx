@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "./Schema";
@@ -16,7 +17,19 @@ import ErrorMessage from "./ErrorMessage";
 
 export default function Login() {
   const navigate = useNavigate();
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const [users, setUsers] = useState([]);
+  
+  // load data users 
+  useEffect(() => {
+    try {
+      const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+      setUsers(storedUsers);
+    } catch (error) {
+      console.error("Error parsing users from localStorage", error);
+      setUsers([]);
+    }
+  }, []);
+  
   
   const {
     register,
