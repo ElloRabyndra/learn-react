@@ -20,6 +20,7 @@ import ErrorMessage from "./ErrorMessage";
 export default function Register() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // load data users 
   useEffect(() => {
@@ -29,8 +30,11 @@ export default function Register() {
     } catch (error) {
       console.error("Error parsing users from localStorage", error);
       setUsers([]);
+      setIsModalOpen(true);
     }
   }, []);
+
+  const handleCloseModal = () => setIsModalOpen(false);
   
   const {
     register,
@@ -61,6 +65,8 @@ export default function Register() {
   };
 
   return (
+    <>
+    {isModalOpen && <ErrorModal onClose={handleCloseModal} />}
     <Card className="w-full min-w-80 md:min-w-md">
       <CardHeader className={"flex items-center justify-between gap-2"}>
         <CardTitle>Register your account</CardTitle>
@@ -132,5 +138,6 @@ export default function Register() {
         </CardDescription>
       </CardFooter>
     </Card>
+    </>
   );
 }

@@ -14,10 +14,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ErrorMessage from "./ErrorMessage";
+import ErrorModal from "./ErrorModal";
 
 export default function Login() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // load data users 
   useEffect(() => {
@@ -27,9 +29,11 @@ export default function Login() {
     } catch (error) {
       console.error("Error parsing users from localStorage", error);
       setUsers([]);
+      setIsModalOpen(true);
     }
   }, []);
   
+  const handleCloseModal = () => setIsModalOpen(false);
   
   const {
     register,
@@ -59,6 +63,8 @@ export default function Login() {
   };
 
   return (
+    <>
+    {isModalOpen && <ErrorModal onClose={handleCloseModal} />}
     <Card className="w-full min-w-80 md:min-w-md">
       <CardHeader className={"flex items-center justify-between gap-2"}>
         <CardTitle>Login to your account</CardTitle>
@@ -102,5 +108,6 @@ export default function Login() {
         </form>
       </CardContent>
     </Card>
+    </>
   );
 }
