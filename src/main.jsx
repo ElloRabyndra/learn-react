@@ -11,6 +11,8 @@ import FormHandling from "./pages/FormHandling";
 import Page from "./components/Routing/Page";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
+import TestFetch from "./pages/TestFetch.jsx";
+import MoviesPage from "./pages/MoviesPage";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -30,6 +32,8 @@ createRoot(document.getElementById("root")).render(
             <Route path="Register" element={<Register />} />
             <Route path="Login" element={<Login />} />
           </Route>
+          <Route path="Fetch" element={<TestFetch />}></Route>
+          <Route path="Movies" element={<MoviesPage />}></Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
