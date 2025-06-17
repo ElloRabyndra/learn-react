@@ -1,17 +1,18 @@
-export const FetchMovies = (url, options, setLoading, setMovies) => {
+export const FetchMovies = async (url, options, setLoading, setMovies) => {
   console.log(url);
   setLoading(true);
-  fetch(url, options)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      setMovies(data.results);
-      setLoading(false);
-    })
-    .catch((err) => {
-      console.error(err);
-      setLoading(false);
-    });
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const data = await response.json();
+    console.log(data);
+    setMovies(data.results || []);
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+  } finally {
+    setLoading(false);
+  }
 };
 
 export const defaultUrl =

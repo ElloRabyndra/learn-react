@@ -12,9 +12,9 @@ export default function MoviesPage() {
   const { theme } = useContext(ThemeContext);
   const [url, setUrl] = useState(defaultUrl);
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("default"); // 'default' | 'top_rated'
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
 
   const options = {
     method: "GET",
