@@ -12,6 +12,7 @@ import Page from "./components/Routing/Page";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import MoviesPage from "./pages/MoviesPage";
+import Error404 from "./pages/Error404";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -32,6 +33,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="Login" element={<Login />} />
           </Route>
           <Route path="Movies" element={<MoviesPage />}></Route>
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
