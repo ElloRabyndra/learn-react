@@ -1,4 +1,13 @@
-export const FetchMovies = async (url, options, setLoading, setMovies) => {
+export const FetchMovies = async (url, setLoading, setMovies) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmE0YmFjMTk0MmIxYmYyNDM0MTYyM2I2MjJmYWYyOCIsIm5iZiI6MTc0OTk2NTM2OC45Njg5OTk5LCJzdWIiOiI2ODRlNWEzODVjYjI3ZmI4MjIzNDQ3ZDQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.FAcU0RrbctMzBWZs-E00NEAT8sEPjxCkN9ZBvHcgHoM",
+    },
+  };
+
   console.log(url);
   setLoading(true);
 

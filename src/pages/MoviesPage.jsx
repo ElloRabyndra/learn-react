@@ -16,17 +16,24 @@ export default function MoviesPage() {
   const [category, setCategory] = useState("default"); // 'default' | 'top_rated'
   const [searchQuery, setSearchQuery] = useState("");
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmE0YmFjMTk0MmIxYmYyNDM0MTYyM2I2MjJmYWYyOCIsIm5iZiI6MTc0OTk2NTM2OC45Njg5OTk5LCJzdWIiOiI2ODRlNWEzODVjYjI3ZmI4MjIzNDQ3ZDQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.FAcU0RrbctMzBWZs-E00NEAT8sEPjxCkN9ZBvHcgHoM",
-    },
+  const handleCategoryChange = (newCategory, newUrl) => {
+    setSearchQuery("");
+    setCategory(newCategory);
+    setUrl(newUrl);
+  };
+
+  const handleSearchChange = (query) => {
+    if (searchQuery.trim()) {
+      const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+        query
+      )}&include_adult=false&language=en-US&page=1`;
+      setCategory("default");
+      setUrl(searchUrl);
+    }
   };
 
   useEffect(() => {
-    FetchMovies(url, options, setLoading, setMovies);
+    FetchMovies(url, setLoading, setMovies);
   }, [url]);
 
   return (
@@ -41,17 +48,14 @@ export default function MoviesPage() {
         {/* Movies Navigation */}
         <MoviesNav
           category={category}
-          setCategory={setCategory}
-          setSearchQuery={setSearchQuery}
-          setUrl={setUrl}
+          onChangeCategory={handleCategoryChange}
         />
 
         {/* Searchbar Movies */}
         <MoviesSearch
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          setCategory={setCategory}
-          setUrl={setUrl}
+          onSearchChange={handleSearchChange}
         />
 
         {/* Movies List */}

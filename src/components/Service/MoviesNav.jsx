@@ -1,6 +1,6 @@
-import {defaultUrl, topRatedUrl } from "./FetchMovies";
+import { defaultUrl, topRatedUrl } from "./FetchMovies";
 
-export default function MoviesNav({ category, setCategory, setSearchQuery, setUrl}) {
+export default function MoviesNav({ category, onChangeCategory }) {
   return (
     <div>
       <h1 className="text-3xl font-bold">Movies</h1>
@@ -11,11 +11,7 @@ export default function MoviesNav({ category, setCategory, setSearchQuery, setUr
               ? "text-primary after:content-[''] after:block after:w-full  after:h-[2px] after:bg-primary"
               : ""
           }`}
-          onClick={() => {
-            setSearchQuery("");
-            setCategory("default");
-            setUrl(defaultUrl);
-          }}
+          onClick={() => onChangeCategory("default", defaultUrl)}
         >
           Default
         </button>
@@ -25,11 +21,7 @@ export default function MoviesNav({ category, setCategory, setSearchQuery, setUr
               ? "text-primary after:content-[''] after:block after:w-full  after:h-[2px] after:bg-primary"
               : ""
           }`}
-          onClick={() => {
-            setSearchQuery("");
-            setCategory("top_rated");
-            setUrl(topRatedUrl);
-          }}
+          onClick={() => onChangeCategory("top_rated", topRatedUrl)}
         >
           Top Rated
         </button>

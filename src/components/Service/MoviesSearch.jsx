@@ -3,20 +3,13 @@ import { Input } from "@/components/ui/input";
 export default function MoviesSearch({
   searchQuery,
   setSearchQuery,
-  setCategory,
-  setUrl
+  onSearchChange,
 }) {
   function handleSearchSubmit(e) {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
-        searchQuery
-      )}&include_adult=false&language=en-US&page=1`;
-      setCategory("default");
-      setUrl(searchUrl);
-    }
+    onSearchChange(searchQuery);
   }
-  
+
   return (
     <div>
       <form onSubmit={handleSearchSubmit}>
