@@ -31,6 +31,7 @@ export default function Nav() {
           <SelectItem value="/liftingStateUp">Lifting State Up</SelectItem>
           <SelectItem value="/Routing">Routing</SelectItem>
           <SelectItem value="/FormHandling">Form Handling</SelectItem>
+          <SelectItem value="/Market">UseEffect</SelectItem>
           <SelectItem value="/Movies">Fetch Movies</SelectItem>
         </SelectGroup>
       </SelectContent>
