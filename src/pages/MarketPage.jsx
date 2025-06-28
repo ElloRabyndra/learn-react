@@ -1,18 +1,32 @@
-import { useContext } from "react";
-import Nav from "../components/Navigation/Nav";
-import ToggleButton from "../components/theme/ToggleButton";
-import { Outlet } from "react-router";
+import { useState, useContext } from "react";
+import { useProducts } from "../components/Hooks/useProducts";
 import { ThemeContext } from "../context/ThemeContext";
+import ToggleButton from "../components/theme/ToggleButton";
+import CartButton from "../components/Cart/CartButton";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
+import ProductsList from "../components/Cart/ProductsList";
 export default function MarketPage() {
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+  const { products, loading, url, setUrl } = useProducts();
   
+  const handleAddToCart = (product) => {};
+
+  const handleCartButtonClick = () => {};
+
   return (
-    <section className={`${theme} flex flex-col items-center justify-center min-h-screen font-[Poppins]`}> 
-      <ToggleButton/> 
-      <div className="p-8 space-y-3 text-center min-w-sm"> 
-        <h1 className="text-2xl font-bold">Market Place</h1>
-        <Nav />
-        <Outlet /> 
+    <section className={`${theme} flex min-h-screen p-8 font-[Poppins]`}>
+      <Button className="absolute top-5 left-6">
+        <Link className="flex items-center gap-2 md:text-xl" to="/">
+          <i className="bx bx-arrow-back"></i> Back
+        </Link>
+      </Button>
+      <ToggleButton />
+      <CartButton />
+      <div className="w-full px-2 mt-12 space-y-4">
+        <h1 className="text-2xl font-bold text-center">Simple Market Place</h1>
+        {/* Products List */}
+        <ProductsList products={products} loading={loading} onAddToCart={handleAddToCart} />
       </div>
     </section>
   );
