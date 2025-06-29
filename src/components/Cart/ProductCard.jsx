@@ -17,10 +17,8 @@ export default function ProductCard({ product, onAddToCart }) {
     setImageError(false);
   };
 
-  const handleClickCart = () => {
-    if (onAddToCart) {
-      onAddToCart(product);
-    }
+  const handleClickCart = (product) => {
+    onAddToCart(product);
   };
 
   // Format harga dengan currency
@@ -92,9 +90,9 @@ export default function ProductCard({ product, onAddToCart }) {
 
           {/* Add to Cart Button */}
           <Button
-            onClick={handleClickCart}
+            onClick={() => handleClickCart(product)}
             type="submit"
-            className="w-full cursor-pointer"
+            className="w-full transition-colors duration-300 ease-in-out cursor-pointer"
           >
             Add to Cart
           </Button>
