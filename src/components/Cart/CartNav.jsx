@@ -14,7 +14,7 @@ export default function CartNav({
     <Card
       className={`${theme} ${
         isCartOpen ? "translate-x-0" : "translate-x-full"
-      } fixed top-0 right-0 h-dvh w-80 p-4 z-50 shadow-2xl bg-zinc-100 rounded-r-none overflow-y-auto`}
+      } fixed top-0 right-0 min-h-dvh w-80 p-4 z-50 shadow-2xl bg-zinc-100 rounded-r-none overflow-y-auto`}
     >
       <div className="flex justify-between">
         <h1 className="text-xl font-bold"> My Cart</h1>
