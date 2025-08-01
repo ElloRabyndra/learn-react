@@ -4,9 +4,19 @@ import Nav from "../components/Navigation/Nav";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { ThemeContext } from "../context/ThemeContext";
+import { signOut } from "firebase/auth";
+import { auth } from "@/config/firebase";
 
 export default function FormHandling() {
   const {theme} = useContext(ThemeContext);
+  
+  const Logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   return (
     <section className={`${theme} flex items-center justify-center min-h-screen p-8 font-[Poppins]`}>
@@ -18,6 +28,7 @@ export default function FormHandling() {
           <Button className={"w-1/2"}><Link to="/Login">Login</Link></Button> 
         </div>
         <Nav />
+        <Button onClick={Logout} variant={"destructive"} className="w-full cursor-pointer">Logout</Button>
       </div>
     </section>
   );
