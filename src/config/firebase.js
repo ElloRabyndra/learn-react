@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAjHdVBJUhStY0bPEHvHNIsqbdMcwZfVLg",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "ello-first-project.firebaseapp.com",
   projectId: "ello-first-project",
   storageBucket: "ello-first-project.firebasestorage.app",
-  messagingSenderId: "18421086808",
-  appId: "1:18421086808:web:af7c9c92a4a90a2718a82d",
-  measurementId: "G-DD9LFCP5KG",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
